@@ -1,14 +1,14 @@
 import axios from "axios";
 
 const API = axios.create({
-  baseURL: "https://todo2-nijx.onrender.com/"
+  baseURL: "https://todo2-nijx.onrender.com/api"
 });
 
-// Attach token automatically
+// Attach JWT token automatically
 API.interceptors.request.use((req) => {
   const token = localStorage.getItem("token");
   if (token) {
-    req.headers.Authorization = token; // or `Bearer ${token}`
+    req.headers.Authorization = token;
   }
   return req;
 });
