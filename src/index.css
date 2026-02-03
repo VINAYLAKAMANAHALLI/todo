@@ -1,0 +1,45 @@
+@import "tailwindcss";
+
+@layer components {
+  /* Layout & Backgrounds */
+  .app-bg {
+    @apply min-h-screen bg-gradient-to-br from-blue-900 via-white via-green-100 to-yellow-100 text-slate-800 relative overflow-hidden;
+  }
+
+  /* Cards & Panels */
+  .glass-card {
+    @apply w-full max-w-md bg-blue-900/90 backdrop-blur-xl rounded-2xl shadow-[0_20px_40px_-15px_rgba(0,0,0,0.3)] border border-white/20 p-8 relative z-10 text-white;
+  }
+
+  /* Inputs */
+  .input-field {
+    @apply w-full px-4 py-3.5 bg-white border border-slate-200 rounded-xl text-slate-700 placeholder-slate-400 focus:outline-none focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10 transition-all duration-300;
+  }
+
+  /* Buttons */
+  .btn-primary {
+    @apply w-full py-3.5 px-4 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-xl transition-all duration-300 shadow-lg shadow-blue-600/20 hover:shadow-blue-600/30 transform hover:-translate-y-0.5 active:scale-95;
+  }
+
+  .btn-action {
+    @apply px-8 py-4 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-xl transition-all duration-300 shadow-lg shadow-blue-600/20 hover:shadow-blue-600/30 transform hover:-translate-y-0.5 active:scale-95;
+  }
+
+  .btn-danger {
+    @apply px-8 py-4 bg-red-500 hover:bg-red-600 text-white font-bold rounded-xl transition-all duration-300 shadow-lg shadow-red-500/20 hover:shadow-red-500/30 transform hover:-translate-y-0.5 active:scale-95;
+  }
+
+  /* Typography */
+  .heading-text {
+    @apply text-4xl font-black text-center text-white mb-8 tracking-tight;
+  }
+
+  .link-text {
+    @apply text-slate-500 hover:text-blue-600 transition-colors text-sm font-medium;
+  }
+
+  /* Todo Specific */
+  .todo-item {
+    @apply flex justify-between items-center p-4 bg-white rounded-xl border border-slate-100 shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-0.5;
+  }
+}
