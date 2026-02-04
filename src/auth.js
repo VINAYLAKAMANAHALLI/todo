@@ -1,4 +1,5 @@
-import API from "./api/api";
+import API from "../src/api";
+
 
 // REGISTER
 export const registerUser = async (data) => {
@@ -17,6 +18,6 @@ export const loginUser = async (data) => {
 };
 
 // LOGOUT
-export const logoutUser = () => {
+export const logout = () => {
   localStorage.removeItem("token");
 };
