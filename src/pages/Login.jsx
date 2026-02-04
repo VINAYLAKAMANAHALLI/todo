@@ -102,20 +102,20 @@ function Login() {
       <div className="absolute top-[-10%] left-[-10%] w-96 h-96 bg-indigo-400/20 rounded-full blur-[100px] pointer-events-none"></div>
       <div className="absolute bottom-[-10%] right-[-10%] w-96 h-96 bg-blue-400/20 rounded-full blur-[100px] pointer-events-none"></div>
 
-      <div ref={containerRef} className="flex flex-col md:flex-row w-full max-w-5xl items-center gap-10 z-10">
+      <div ref={containerRef} className="flex flex-col lg:flex-row w-full max-w-5xl items-center gap-8 lg:gap-10 z-10">
 
         {/* Left Side: Content (Swapped) */}
-        <div className="w-full md:w-1/2 text-white space-y-8 text-center md:text-left hidden md:block">
+        <div className="w-full lg:w-1/2 text-white space-y-6 lg:space-y-8 text-center lg:text-left">
            <img 
              src="https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?auto=format&fit=crop&q=80&w=2072&ixlib=rb-4.0.3" 
              alt="Todo Illustration" 
-             className="w-4/5 mx-auto md:mx-0 drop-shadow-2xl rounded-2xl opacity-90" 
+             className="w-3/5 lg:w-4/5 mx-auto lg:mx-0 drop-shadow-2xl rounded-2xl opacity-90" 
            />
            <div>
-             <h1 className="text-5xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-400">
+             <h1 className="text-4xl lg:text-5xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-400">
                Organize Your Life
              </h1>
-             <p className="text-lg text-slate-300 leading-relaxed max-w-md">
+             <p className="text-base lg:text-lg text-slate-300 leading-relaxed max-w-md mx-auto lg:mx-0">
                Stay on top of your tasks with our intuitive Todo App. 
                Manage your day, track your progress, and achieve your goals effortlessly.
              </p>
@@ -123,7 +123,7 @@ function Login() {
         </div>
         
         {/* Right Side: Card with Flip (Swapped) */}
-        <div className="w-full md:w-1/2 h-[550px] [perspective:1000px]">
+        <div className="w-full max-w-md lg:max-w-none lg:w-1/2 h-[500px] sm:h-[550px] [perspective:1000px]">
           <div ref={cardRef} className="relative w-full h-full [transform-style:preserve-3d]">
             
             {/* Front Face: Login */}
