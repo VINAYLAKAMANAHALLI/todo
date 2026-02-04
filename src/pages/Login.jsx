@@ -8,6 +8,7 @@ function Login() {
   const location = useLocation();
   const navigate = useNavigate();
   const [isRegister, setIsRegister] = useState(location.pathname === "/register");
+  const [isLoading, setIsLoading] = useState(false);
   
   // Login States
   const [email, setEmail] = useState("");
@@ -59,12 +60,14 @@ function Login() {
   const handleLogin = async (e) => {
     e.preventDefault();
     if (!email || !password) return toast.warn("Please fill all fields");
+    setIsLoading(true);
     try {
       await loginUser({ email, password });
       toast.success("Login successful");
       setTimeout(() => navigate("/todos"), 800);
     } catch (error) {
       toast.error(error?.response?.data?.message || "Invalid credentials");
+      setIsLoading(false);
     }
   };
 
@@ -76,12 +79,15 @@ function Login() {
       setRegEmailError("Please enter a valid email address.");
       return toast.error("Invalid email format.");
     }
+    setIsLoading(true);
     try {
       await registerUser({ name: regName, email: regEmail, password: regPassword });
       toast.success("Registration successful! Please login.");
+      setIsLoading(false);
       navigate("/", { state: { fromRegister: true } });
     } catch (err) {
       toast.error("Registration failed. The email might already be in use.");
+      setIsLoading(false);
     }
   };
 
@@ -118,10 +124,10 @@ function Login() {
         
         {/* Right Side: Card with Flip (Swapped) */}
         <div className="w-full md:w-1/2 h-[550px] [perspective:1000px]">
-          <div ref={cardRef} className="relative w-full h-full transition-all duration-700 [transform-style:preserve-3d]">
+          <div ref={cardRef} className="relative w-full h-full [transform-style:preserve-3d]">
             
             {/* Front Face: Login */}
-            <div className="absolute inset-0 [backface-visibility:hidden]">
+            <div className={`absolute inset-0 [backface-visibility:hidden] ${isRegister ? "pointer-events-none" : "pointer-events-auto"}`}>
               <div className="glass-card h-full flex flex-col justify-center p-8">
                 <h2 className="heading-text mb-6">Login</h2>
                 <form onSubmit={handleLogin} className="space-y-6">
@@ -156,7 +162,18 @@ function Login() {
                       </button>
                     </div>
                   </div>
-                  <button type="submit" className="btn-primary">Login</button>
+                  <button type="submit" className="btn-primary" disabled={isLoading}>
+                    {isLoading ? (
+                      <div className="flex items-center justify-center">
+                        <svg className="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                          <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                          <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                        </svg>
+                      </div>
+                    ) : (
+                      "Login"
+                    )}
+                  </button>
                   <div className="text-center mt-4">
                     <button type="button" onClick={() => toggleMode(true)} className="link-text">
                       Don’t have an account? Register
@@ -167,7 +184,7 @@ function Login() {
             </div>
 
             {/* Back Face: Register */}
-            <div className="absolute inset-0 [backface-visibility:hidden] [transform:rotateY(180deg)]">
+            <div className={`absolute inset-0 [backface-visibility:hidden] [transform:rotateY(180deg)] ${isRegister ? "pointer-events-auto" : "pointer-events-none"}`}>
               <div className="glass-card h-full flex flex-col justify-center p-8">
                 <h2 className="heading-text mb-6">Create Account</h2>
                 <form onSubmit={handleRegister} className="space-y-6">
@@ -211,7 +228,18 @@ function Login() {
                       </button>
                     </div>
                   </div>
-                  <button type="submit" className="btn-primary">Register</button>
+                  <button type="submit" className="btn-primary" disabled={isLoading}>
+                    {isLoading ? (
+                      <div className="flex items-center justify-center">
+                        <svg className="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                          <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                          <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                        </svg>
+                      </div>
+                    ) : (
+                      "Register"
+                    )}
+                  </button>
                   <div className="text-center mt-4">
                     <button type="button" onClick={() => toggleMode(false)} className="link-text">
                       Already have an account? Login
