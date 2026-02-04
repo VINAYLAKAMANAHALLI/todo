@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const API = axios.create({
-  baseURL: "https://todo2-1-olmw.onrender.com"
+  baseURL: "http://localhost:5000/api"
 });
 
 // Attach JWT token automatically
