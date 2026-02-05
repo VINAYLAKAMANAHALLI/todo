@@ -62,9 +62,14 @@ function Login() {
     if (!email || !password) return toast.warn("Please fill all fields");
     setIsLoading(true);
     try {
-      await loginUser({ email, password });
+      const data = await loginUser({ email, password });
       toast.success("Login successful");
-      setTimeout(() => navigate("/todos"), 800);
+      
+      if (data.role === "admin") {
+        setTimeout(() => navigate("/admin"), 800);
+      } else {
+        setTimeout(() => navigate("/todos"), 800);
+      }
     } catch (error) {
       toast.error(error?.response?.data?.message || "Invalid credentials");
       setIsLoading(false);

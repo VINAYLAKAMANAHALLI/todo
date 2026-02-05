@@ -3,6 +3,7 @@ import Login from "../src/pages/Login";
 import Todos from "../src/pages/Todo";
 import Register from "../src/pages/Register";
 import ProtectedRoute from "./components/ProtectedRoute";
+import Admin from "../src/pages/Admin";
 import React from "react";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -20,6 +21,14 @@ function App() {
           element={
             <ProtectedRoute>
               <Todos />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/admin"
+          element={
+            <ProtectedRoute>
+              <Admin />
             </ProtectedRoute>
           }
         />
